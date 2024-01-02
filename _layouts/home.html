@@ -29,9 +29,6 @@
 {% endif %}
 
 <div id="main" role="main">
-  <div class="article-author-side">
-    {% include author-bio.html %}
-  </div>
   <div id="index">
     {% assign navigation = site.data.navigation[page.lang] %}
     <h3><a href="{{ navigation.blog.url }}">Recent Posts</a></h3>
@@ -49,6 +46,9 @@
       {% else %}
         <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
         <p>{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>
+        <p class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">
+          <small>Published on {{ post.date | date: "%B %d, %Y" }}</small>
+        </p>
       {% endif %}
     </article>
     {% endfor %}
